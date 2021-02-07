@@ -3,40 +3,29 @@ module App
 open Elmish
 open Elmish.React
 open Feliz
-
-type State =
-    { Count: int }
-
-type Msg =
-    | Increment
-    | Decrement
+open AppState
+open Reducer
 
 let init() =
-    { Count = 0 }
+    { 
+      Todos = [{ Title = "Initial Todo"; Status = false; Id = (AppState.TodoId (System.Guid.NewGuid()))}]
+      NewTodoTitle = "" 
+    }
 
-let update (msg: Msg) (state: State): State =
-    match msg with
-    | Increment ->
-        { state with Count = state.Count + 1 }
-
-    | Decrement ->
-        { state with Count = state.Count - 1 }
-
-let render (state: State) (dispatch: Msg -> unit) =
+let render (state: State) (dispatch: Reducer.Actions -> unit) =
   Html.div [
-    Html.button [
-      prop.onClick (fun _ -> dispatch Increment)
-      prop.text "Increment"
+    Html.h1 [
+      prop.text "My Study topics"
     ]
-
-    Html.button [
-      prop.onClick (fun _ -> dispatch Decrement)
-      prop.text "Decrement"
+    Html.ul [
+      prop.children [
+        Html.li [
+          prop.text "foo"
+        ]
+      ]
     ]
-
-    Html.h1 state.Count
   ]
 
-Program.mkSimple init update render
+Program.mkSimple init Reducer.update render
 |> Program.withReactSynchronous "elmish-app"
 |> Program.run

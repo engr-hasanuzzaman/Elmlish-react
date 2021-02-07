@@ -15,9 +15,27 @@ let init() =
     
 let render (state: State) (dispatch: Actions -> unit) =
   Html.div [
-    RenderPageTitle "Todos"
-    RenderTodos state.Todos state
-    RenderTodoForm state dispatch
+    prop.classes ["h-100"; "w-full"; "flex"; "items-center"; "justify-center"; "bg-teal-lightest"; "font-sans";]
+    prop.children [
+      Html.div [
+        prop.classes ["bg-white"; "rounded"; "shadow"; "p-6 m-4"; "w-full"; "lg:w-3/4"; "lg:max-w-lg";]
+        prop.children [
+          Html.div [
+            prop.classes ["mb-4"]
+            prop.children [
+              RenderPageTitle "Todos"
+              RenderTodoForm state dispatch
+            ]
+          ]
+
+          Html.div [
+            prop.children [
+              RenderTodos state.Todos state
+            ]
+          ]
+        ]
+      ]
+    ]
   ]
 
 Program.mkSimple init Reducer.update render

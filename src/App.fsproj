@@ -4,7 +4,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="State.fs" />
-    <Compile Include="Update.fs" />
+    <Compile Include="Reducer.fs" />
+    <Compile Include="components/Index.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,11 +17,19 @@ let render (state: State) (dispatch: Reducer.Actions -> unit) =
     Html.h1 [
       prop.text "My Study topics"
     ]
-    Html.ul [
+    Html.div [
       prop.children [
-        Html.li [
-          prop.text "foo"
-        ]
+        for li in state.Todos do
+          Html.div [
+            prop.children [
+              Html.text li.Title
+              Html.input [
+                prop.type' "checkbox"
+                prop.value li.Status
+              ]
+            ]
+          ]
+         
       ]
     ]
     Html.div [
@@ -32,9 +40,13 @@ let render (state: State) (dispatch: Reducer.Actions -> unit) =
       Html.input [
         prop.type' "text"
         prop.placeholder "input subject"
-        prop.value state.NewTodoTitle
-        // prop.onChange (fun e ->  dispatch UpdateTitle)
-      ]
+        prop.valueOrDefault state.NewTodoTitle
+        prop.onTextChange (fun str ->  dispatch ( UpdateTitle str ))
+      ] 
+    ]
+    Html.button [
+      prop.text "add new task"
+      prop.onClick (fun _ -> dispatch (AddNew state.NewTodoTitle) )
     ]
   ]
 

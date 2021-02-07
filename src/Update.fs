@@ -6,6 +6,8 @@ module Reducer
 type Actions = 
     | AddNew of Title : string
     | MarkComplete of Id : AppState.TodoId
+    | UpdateTitle of title : string
+
    
 let update (action: Actions) (state: AppState.State): AppState.State =
     match action with
@@ -13,3 +15,4 @@ let update (action: Actions) (state: AppState.State): AppState.State =
         { state with Todos = [{ Title = title; Status = false; Id = (AppState.TodoId (System.Guid.NewGuid( )) ) }] }
     | MarkComplete Id ->
         { state with Todos = List.filter (fun todo -> todo.Id <> Id) state.Todos}
+    | UpdateTitle title -> { state with NewTodoTitle = title }

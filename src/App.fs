@@ -24,6 +24,18 @@ let render (state: State) (dispatch: Reducer.Actions -> unit) =
         ]
       ]
     ]
+    Html.div [
+      Html.label [
+        prop.text "Input Title"
+      ]
+
+      Html.input [
+        prop.type' "text"
+        prop.placeholder "input subject"
+        prop.value state.NewTodoTitle
+        // prop.onChange (fun e ->  dispatch UpdateTitle)
+      ]
+    ]
   ]
 
 Program.mkSimple init Reducer.update render

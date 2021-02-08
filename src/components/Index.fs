@@ -9,7 +9,7 @@ let RenderTodo (todo: Todo) =
     prop.classes ["flex"; "mb-4"; "items-center"]
     prop.children [
       Html.p [
-        prop.classes ["w-full"; "text-grey-darkest"]
+        prop.classes ["w-full"; if todo.Status then "line-through text-green" else "text-grey-darkest"]
         prop.text todo.Title
       ]
       if not todo.Status then
@@ -24,6 +24,10 @@ let RenderTodo (todo: Todo) =
             prop.text "Not Done"
             // prop.onChange (fun (e: Browser.Types.HTMLInputElement) -> (MarkComplete li.Id) >> di)
           ]
+      Html.button [
+        prop.classes ["flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"]
+        prop.text "Remove"
+      ]
     ]
   ]
 
@@ -45,9 +49,10 @@ let RenderTodos (todos: Todo list) (state : State) =
 
 let RenderTodoForm (state : State) (dispatch: Reducer.Actions -> unit) =
   Html.div [
-    prop.classes ["flex mt-4"]
+    prop.classes ["flex items-center mt-4"]
     prop.children [
       Html.label [
+        prop.classes ["mr-4"]
         prop.text "Title"
       ]
       Html.input [

@@ -48,7 +48,7 @@ let RenderTodoForm (state : State) (dispatch: Reducer.Actions -> unit) =
     prop.classes ["flex mt-4"]
     prop.children [
       Html.label [
-        prop.text "Input Title"
+        prop.text "Title"
       ]
       Html.input [
         prop.classes ["shadow"; "appearance-none"; "border"; "rounded"; "w-full"; "py-2"; "px-3"; "mr-4"; "text-grey-darker"]
@@ -58,7 +58,7 @@ let RenderTodoForm (state : State) (dispatch: Reducer.Actions -> unit) =
         prop.onTextChange (fun str ->  dispatch ( UpdateTitle str ))
       ]
       Html.button [
-        prop.classes ["flex-no-shrink"; "p-2 border-2"; "rounded"; "text-teal"; "border-teal"; "hover:text-white"; "hover:bg-teal"]
+        prop.classes ["flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal"]
         prop.text "add new task"
         prop.onClick (fun _ -> dispatch (AddNew state.NewTodoTitle) )
       ]

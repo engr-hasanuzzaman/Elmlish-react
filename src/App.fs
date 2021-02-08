@@ -15,10 +15,10 @@ let init() =
     
 let render (state: State) (dispatch: Actions -> unit) =
   Html.div [
-    prop.classes ["h-100"; "w-full"; "flex"; "items-center"; "justify-center"; "bg-teal-lightest"; "font-sans";]
+    prop.classes ["h-screen w-full flex items-center justify-center bg-teal-lightest font-sans";]
     prop.children [
       Html.div [
-        prop.classes ["bg-white"; "rounded"; "shadow"; "p-6 m-4"; "w-full"; "lg:w-3/4"; "lg:max-w-lg";]
+        prop.classes ["bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg";]
         prop.children [
           Html.div [
             prop.classes ["mb-4"]
@@ -39,5 +39,5 @@ let render (state: State) (dispatch: Actions -> unit) =
   ]
 
 Program.mkSimple init Reducer.update render
-|> Program.withReactSynchronous "elmish-app"
+|> Program.withReactSynchronous "app"
 |> Program.run

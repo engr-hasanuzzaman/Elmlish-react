@@ -7,7 +7,7 @@ type Actions =
     | AddNew of Title : string
     | ToggleStatus of Id : AppState.TodoId
     | UpdateTitle of title : string
-
+    | DeleteTodo of Id : AppState.TodoId
    
 let update (action: Actions) (state: AppState.State): AppState.State =
     match action with
@@ -17,3 +17,4 @@ let update (action: Actions) (state: AppState.State): AppState.State =
     | ToggleStatus Id ->
         { state with Todos = List.map (fun (todo: AppState.Todo) -> if todo.Id = Id then ({todo with Status = not todo.Status}) else todo) state.Todos }
     | UpdateTitle title -> { state with NewTodoTitle = title }
+    | DeleteTodo Id -> { state with Todos = state.Todos |> (List.filter (fun (todo: AppState.Todo) -> todo.Id <> Id)) }

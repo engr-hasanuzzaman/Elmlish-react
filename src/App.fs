@@ -30,7 +30,7 @@ let render (state: State) (dispatch: Actions -> unit) =
 
           Html.div [
             prop.children [
-              RenderTodos state.Todos state
+              RenderTodos state.Todos state dispatch
             ]
           ]
         ]

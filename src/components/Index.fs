@@ -4,7 +4,7 @@ open Feliz
 open Reducer
 open AppState
 
-let RenderTodo (todo: Todo) =
+let RenderTodo (todo: Todo) (dispatch: Reducer.Actions -> unit) =
   Html.div [
     prop.classes ["flex"; "mb-4"; "items-center"]
     prop.children [
@@ -16,7 +16,7 @@ let RenderTodo (todo: Todo) =
           Html.button [
             prop.classes ["flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"]
             prop.text "Done"
-            // prop.onChange (fun (e: Browser.Types.HTMLInputElement) -> (MarkComplete li.Id) >> di)
+            prop.onClick (fun (e) -> dispatch (MarkComplete todo.Id))
           ]
       else
           Html.button [
@@ -38,11 +38,11 @@ let RenderPageTitle (title: string) =
     prop.text title
   ]
 
-let RenderTodos (todos: Todo list) (state : State) =
+let RenderTodos (todos: Todo list) (state : State) (dispatch: Reducer.Actions -> unit)=
   Html.div [
     prop.classes []
     prop.children [
-       for todo in state.Todos -> RenderTodo todo         
+       for todo in state.Todos -> RenderTodo todo dispatch
       ]
     ]
 

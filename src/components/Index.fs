@@ -16,13 +16,13 @@ let RenderTodo (todo: Todo) (dispatch: Reducer.Actions -> unit) =
           Html.button [
             prop.classes ["flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"]
             prop.text "Done"
-            prop.onClick (fun (e) -> dispatch (MarkComplete todo.Id))
+            prop.onClick (fun (e) -> dispatch (ToggleStatus todo.Id))
           ]
       else
           Html.button [
             prop.classes ["flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey"]
             prop.text "Not Done"
-            // prop.onChange (fun (e: Browser.Types.HTMLInputElement) -> (MarkComplete li.Id) >> di)
+            prop.onClick (fun (e) -> dispatch (ToggleStatus todo.Id))
           ]
       Html.button [
         prop.classes ["flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"]

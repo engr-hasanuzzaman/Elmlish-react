@@ -1,6 +1,6 @@
 # Elmish Getting Started
 
-This is a simple Fable application including an [Elmish](https://elmish.github.io/) counter. The repository is made for learning purposes and the generated Javascript output is not optimized. That said, the template shows you how easy it is to get started with Fable and Elmish using minimal configuration.
+This is a simple Fable TODO application using [Elmish](https://elmish.github.io/). The repository is made for learning purposes and the generated Javascript output is not optimized. That said, the template shows you how easy it is to get started with Fable and Elmish using minimal configuration.
 
 ## Building and running the app
 
@@ -21,3 +21,5 @@ After the first compilation is finished, navigate to http://localhost:8080 in yo
 ### VS Code
 
 If you happen to use Visual Studio Code, simply hitting F5 will start the development watch mode for you and opens your default browser navigating to http://localhost:8080.
+
+## screenshot
